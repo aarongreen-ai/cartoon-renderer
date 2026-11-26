@@ -53,4 +53,5 @@ jobs:
           curl -sS --retry 3 -X POST -H 'Content-Type: application/json' -d "{\"ok\":true,\"url\":\"$VIDEO_URL\",\"duration\":$DUR,\"run\":\"$RUN_ID\"}" "$CALLBACK"
       - name: Report failure
         if: failure() && env.CALLBACK != ''
-        run: curl -sS --retry 3 -X POST -H 'Content-Type: application/json' -d "{\"ok\":false,\"run\":\"$RUN_ID\"}" "$CALLBACK"
+        run: |
+          curl -sS --retry 3 -X POST -H 'Content-Type: application/json' -d "{\"ok\":false,\"run\":\"$RUN_ID\"}" "$CALLBACK"
