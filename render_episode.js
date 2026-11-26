@@ -43,7 +43,8 @@ function sanitize(ep) {
     if (!['push', 'pull', 'pan_left', 'pan_right', 'drift'].includes(b.move)) b.move = null;
     b.props = (b.props || []).filter((p) => p && S.PROPS[p.prop]);
     if (b.shake) b.shake = fixA(b.shake);
-    b.fx = [].concat(b.fx || []).filter((f) => /^(dark|flicker|fog|red)$/.test(f) || (/^spot:/.test(f) && b.cast.some((c) => 'spot:' + c.id === f)));
+    const blank = sets[b.set] && sets[b.set].type === 'blank';
+    b.fx = [].concat(b.fx || []).filter((f) => !(blank && (f === 'dark' || /^spot:/.test(f)))).filter((f) => /^(dark|flicker|fog|red)$/.test(f) || (/^spot:/.test(f) && b.cast.some((c) => 'spot:' + c.id === f)));
     return b;
   });
   if (!ep.beats.length) ep.beats = [{ at: { line: 0 }, set: firstSet, cam: 'wide', cast: [{ id: ep.season.hero, expr: 'neutral', pose: 'idle' }] }];
