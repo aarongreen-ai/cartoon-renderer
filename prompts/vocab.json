@@ -96,7 +96,22 @@
   "red",
   "spot:<character id>"
  ],
- "repo_sounds": [],
+ "repo_sounds": [
+  "ambience_horror",
+  "ambience_sitcom",
+  "creepy_footsteps",
+  "ding",
+  "door_creak",
+  "flashlight_click",
+  "heartbeat",
+  "jump_scare",
+  "lights_buzz",
+  "music_box",
+  "owl",
+  "pop",
+  "thunder",
+  "whisper"
+ ],
  "rig": {
   "body": [
    "m",
