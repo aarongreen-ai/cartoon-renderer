@@ -1,0 +1,56 @@
+name: render-episode
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: Path of the episode file in this repo
+        required: true
+      tag:
+        description: Release tag for the finished video
+        required: true
+      callback:
+        description: n8n resume URL to call when done
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      EPISODE: ${{ inputs.episode }}
+      TAG: ${{ inputs.tag }}
+      CALLBACK: ${{ inputs.callback }}
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      RUN_ID: ${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Install renderer
+        run: npm ci --no-audit --no-fund
+      - name: Check environment
+        run: npx hyperframes doctor || true
+      - name: Render
+        run: node render_episode.js "$EPISODE" out.mp4
+      - name: Publish video
+        run: |
+          gh release create "$TAG" out.mp4 --repo "$REPO" --title "$TAG" --notes "Episode render $RUN_ID" || gh release upload "$TAG" out.mp4 --repo "$REPO" --clobber
+          echo "VIDEO_URL=https://github.com/$REPO/releases/download/$TAG/out.mp4" >> "$GITHUB_ENV"
+      - name: Report success
+        if: success() && env.CALLBACK != ''
+        run: |
+          DUR=$(node -e "console.log(require('./timing.json').duration)")
+          curl -sS --retry 3 -X POST -H 'Content-Type: application/json' -d "{\"ok\":true,\"url\":\"$VIDEO_URL\",\"duration\":$DUR,\"run\":\"$RUN_ID\"}" "$CALLBACK"
+      - name: Report failure
+        if: failure() && env.CALLBACK != ''
+        run: curl -sS --retry 3 -X POST -H 'Content-Type: application/json' -d "{\"ok\":false,\"run\":\"$RUN_ID\"}" "$CALLBACK"

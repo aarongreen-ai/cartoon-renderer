@@ -1,0 +1,8 @@
+{
+  "name": "cartoon-renderer",
+  "private": true,
+  "description": "Renders the Funny Hats Company daily cartoon episodes with HyperFrames.",
+  "dependencies": {
+    "hyperframes": "0.9.99"
+  }
+}

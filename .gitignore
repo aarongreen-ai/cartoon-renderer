@@ -1,0 +1,6 @@
+/node_modules
+/work
+/proj
+*.mp4
+check.json
+timing.json

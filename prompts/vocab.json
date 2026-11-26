@@ -1,0 +1,186 @@
+{
+ "poses": [
+  "idle",
+  "together",
+  "phone",
+  "phone2",
+  "wave",
+  "point",
+  "pointL",
+  "shrug",
+  "hips",
+  "panic",
+  "headhold",
+  "facepalm",
+  "think",
+  "hold",
+  "present",
+  "presentL",
+  "cheer",
+  "fist",
+  "cross",
+  "explain",
+  "count",
+  "beg"
+ ],
+ "expressions": [
+  "neutral",
+  "happy",
+  "laugh",
+  "worried",
+  "nervous",
+  "shocked",
+  "angry",
+  "sad",
+  "smug",
+  "thinking",
+  "excited",
+  "tired",
+  "sly"
+ ],
+ "set_types": [
+  "blank",
+  "kitchen",
+  "living",
+  "bedroom",
+  "office",
+  "shop",
+  "restaurant",
+  "backyard",
+  "street",
+  "park",
+  "garage"
+ ],
+ "props": [
+  "grill",
+  "table",
+  "chair",
+  "box",
+  "sign",
+  "money",
+  "burger",
+  "pizza",
+  "cake",
+  "car",
+  "plant",
+  "tv",
+  "laptop",
+  "hatrack",
+  "shirtrack",
+  "trophy",
+  "balloon",
+  "dumpster",
+  "cone",
+  "mic",
+  "stall"
+ ],
+ "rig": {
+  "body": [
+   "m",
+   "f"
+  ],
+  "skin": "0 (lightest) to 6 (darkest)",
+  "age": [
+   "adult",
+   "elder",
+   "kid"
+  ],
+  "build": [
+   "slim",
+   "avg",
+   "big"
+  ],
+  "height": "0.9 to 1.08",
+  "hair": [
+   "short",
+   "quiff",
+   "buzz",
+   "curly",
+   "bun",
+   "long",
+   "curlylong",
+   "bob",
+   "ponytail",
+   "side",
+   "balding",
+   "bald"
+  ],
+  "hairColor": [
+   "black",
+   "dark",
+   "brown",
+   "auburn",
+   "blonde",
+   "ginger",
+   "grey",
+   "white",
+   "blue",
+   "pink",
+   "or a hex color"
+  ],
+  "top": [
+   "tee",
+   "hoodie",
+   "sweater",
+   "button",
+   "blazer",
+   "polo",
+   "dress",
+   "jersey"
+  ],
+  "topColor": "hex",
+  "top2": "hex (blazer shirt / jersey trim)",
+  "bottom": [
+   "jeans",
+   "pants",
+   "shorts",
+   "skirt"
+  ],
+  "bottomColor": "hex",
+  "shoes": [
+   "",
+   "dark",
+   "boots",
+   "heels"
+  ],
+  "facial": [
+   "",
+   "stubble",
+   "beard",
+   "fullbeard",
+   "mustache"
+  ],
+  "glasses": [
+   "",
+   "round",
+   "square"
+  ],
+  "hat": [
+   "",
+   "cap",
+   "beanie",
+   "bucket",
+   "chef",
+   "cowboy",
+   "tophat",
+   "party",
+   "fedora",
+   "headset"
+  ],
+  "hatColor": "hex",
+  "acc": [
+   "",
+   "apron",
+   "tie",
+   "necklace",
+   "lanyard"
+  ],
+  "accColor": "hex",
+  "earrings": [
+   true,
+   false
+  ],
+  "logo": "true puts the Funny Hats Company logo on the shirt",
+  "eyeColor": "hex"
+ }
+}
