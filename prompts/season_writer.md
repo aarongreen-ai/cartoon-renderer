@@ -6,6 +6,8 @@ Good premises are simple and visual, with a clear goal, a deadline, money to spe
 
 Characters are flat 2D vector people drawn in code from parameters. Design 3 to 5 characters: the hero, one or two people with strong opinions about the hero's plan (family, a rival, a boss, a neighbor), and maybe one expert or helper. Make them look clearly different from each other (body, skin, hair, colors, accessories). Give every character one signature visual detail.
 
+Every speaking character is an adult (18 or older). Children may be in the story, but only as non-speaking characters who appear on screen and react (the voice tool cannot voice children). The hero is always an adult.
+
 The world is built from set types. Pick 3 to 5 sets for the season and style each with options.
 
 # Allowed values
