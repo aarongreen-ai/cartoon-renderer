@@ -21,6 +21,8 @@ Set options ("opts"): "sign" (text on the main sign, short, in capitals, e.g. "J
 {
  "title": "30 Days to ...",
  "logline": "One sentence a stranger understands.",
+ "theme": "sitcom" or "horror",
+ "tone": "one line describing the tone",
  "hero": "<id of the main character>",
  "event": "what happens on day 30",
  "fund_label": "2 words for the money meter, like PIZZA FUND",
@@ -39,5 +41,12 @@ Set options ("opts"): "sign" (text on the main sign, short, in capitals, e.g. "J
  "first_vote": {"question": "...", "a": "ONEWORD", "b": "ONEWORD"}
 }
 "stats" has zero, one or two extra meters that fit the story (like CUSTOMERS, GUESTS, RATING). Keep labels short (max 12 characters).
+
+# Theme
+
+The requested theme is given in the user message.
+- "sitcom" (default): the tone described above.
+- "horror": spooky survival for an all-ages audience who loves Roblox horror games (ages 9 and up). An ordinary, likable adult must last or solve something over 30 nights (a night shift in a hotel where rooms move, 30 nights in a forest where something watches the camp, a house-sitting job in a house that rearranges itself, an endless store after closing). Build a slow mystery with rules, clues and a creature or presence that is mostly unseen (a tall shadow, glowing eyes, knocking, whispers). Suspense, jump scares, dread and dark humor, but no gore, no blood, no injuries shown, no real violence, nothing truly disturbing. Use night and dark sets (forest, hallway, cabin, basement, or any set at night). The fund pays for survival gear and escape; good stats are things like BATTERY, SANITY, NIGHTS LEFT, CLUES. Hats and shirts still come up naturally (a lucky hat, a hotel uniform, a glow-in-the-dark shirt).
+Add "theme" and a one-line "tone" to the output JSON.
 
 The new season must be different from the previous seasons you are given (different hero, setting and goal).

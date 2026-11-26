@@ -30,6 +30,7 @@ const D = ep.duration;
 const audio = [];
 if (ep.voice && ep.voice.src) audio.push(`<audio id="voice" src="${ep.voice.src}" data-start="0" data-volume="1"></audio>`);
 if (ep.music && ep.music.src) audio.push(`<audio id="music" src="${ep.music.src}" data-start="0" data-duration="${D}" data-volume="${ep.music.vol || 0.1}" data-fade-out="1.5"></audio>`);
+if (ep.ambience && ep.ambience.src && ep.ambience.len) { const n = Math.ceil(D / ep.ambience.len); for (let k = 0; k < n; k++) audio.push(`<audio id="amb${k}" src="${ep.ambience.src}" data-start="${(k * ep.ambience.len).toFixed(3)}" data-volume="${ep.ambience.vol || 0.18}"${k === n - 1 ? ' data-fade-out="1.5"' : ''}></audio>`); }
 (ep.sfx_resolved || []).forEach((s, i) => audio.push(`<audio id="sfx${i}" src="${s.src}" data-start="${s.t.toFixed(3)}" data-volume="${s.vol || 0.5}"></audio>`));
 
 const html = `<!doctype html>

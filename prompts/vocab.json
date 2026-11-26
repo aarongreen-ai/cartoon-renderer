@@ -36,6 +36,7 @@
   "thinking",
   "excited",
   "tired",
+  "scared",
   "sly"
  ],
  "set_types": [
@@ -49,6 +50,10 @@
   "backyard",
   "street",
   "park",
+  "forest",
+  "hallway",
+  "cabin",
+  "basement",
   "garage"
  ],
  "props": [
@@ -69,11 +74,29 @@
   "shirtrack",
   "trophy",
   "balloon",
+  "shadow",
+  "eyes",
+  "bush",
+  "campfire",
+  "lantern",
+  "flashlight",
+  "candle",
+  "tvstatic",
+  "standdoor",
+  "note",
   "dumpster",
   "cone",
   "mic",
   "stall"
  ],
+ "fx": [
+  "dark",
+  "flicker",
+  "fog",
+  "red",
+  "spot:<character id>"
+ ],
+ "repo_sounds": [],
  "rig": {
   "body": [
    "m",

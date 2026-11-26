@@ -10,6 +10,8 @@ const v = {
   expressions: Object.keys(R.EXPR),
   set_types: Object.keys(S.SETS),
   props: Object.keys(S.PROPS),
+  fx: ['dark', 'flicker', 'fog', 'red', 'spot:<character id>'],
+  repo_sounds: (fs.existsSync(path.join(__dirname, '../assets/sfx')) ? fs.readdirSync(path.join(__dirname, '../assets/sfx')) : []).filter((f) => f.endsWith('.mp3')).map((f) => f.replace('.mp3', '')),
   rig: {
     body: ['m', 'f'], skin: '0 (lightest) to 6 (darkest)', age: ['adult', 'elder', 'kid'], build: ['slim', 'avg', 'big'], height: '0.9 to 1.08',
     hair: [...new Set([...cases('hairFront'), ...cases('hairBack')])], hairColor: Object.keys(R.HAIR).concat(['or a hex color']),

@@ -16,6 +16,7 @@ const sh = (cmd, args) => execFileSync(cmd, args, { stdio: ['ignore', 'pipe', 'p
 const dur = (f) => parseFloat(sh('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]));
 
 async function dl(url, file) {
+  if (!/^https?:/i.test(url)) { fs.copyFileSync(path.join(here, url), file); return file; }  // file kept in this repo (assets/sfx/...)
   for (let i = 0; i < 4; i++) {
     try { const r = await fetch(url); if (!r.ok) throw new Error('HTTP ' + r.status); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer())); return file; }
     catch (e) { if (i === 3) throw new Error('download failed ' + url + ' ' + e.message); await new Promise((r) => setTimeout(r, 1500 * (i + 1))); }
@@ -42,6 +43,7 @@ function sanitize(ep) {
     if (!['push', 'pull', 'pan_left', 'pan_right', 'drift'].includes(b.move)) b.move = null;
     b.props = (b.props || []).filter((p) => p && S.PROPS[p.prop]);
     if (b.shake) b.shake = fixA(b.shake);
+    b.fx = [].concat(b.fx || []).filter((f) => /^(dark|flicker|fog|red)$/.test(f) || (/^spot:/.test(f) && b.cast.some((c) => 'spot:' + c.id === f)));
     return b;
   });
   if (!ep.beats.length) ep.beats = [{ at: { line: 0 }, set: firstSet, cam: 'wide', cast: [{ id: ep.season.hero, expr: 'neutral', pose: 'idle' }] }];
@@ -135,6 +137,7 @@ function sanitize(ep) {
     w.src = got[w.name];
   }
   ep.sfx_resolved = res.slice(0, 60).map((w) => ({ src: w.src, t: Math.max(0, w.t), vol: w.vol }));
+  if (ep.ambience && ep.ambience.url) { await dl(ep.ambience.url, path.join(proj, 'assets', 'ambience.mp3')); ep.ambience = { src: 'assets/ambience.mp3', len: dur(path.join(proj, 'assets', 'ambience.mp3')), vol: ep.ambience.vol || 0.18 }; }
   if (ep.music && ep.music.url) { await dl(ep.music.url, path.join(proj, 'assets', 'music.mp3')); ep.music = { src: 'assets/music.mp3', vol: ep.music.vol || 0.09 }; }
 
   // ---------- 3. images used by pops (product photos, profile pics)
