@@ -5,6 +5,7 @@
 - Captions: big word-by-word, one colored keyword, kept away from the bottom and right edge (app buttons).
 - Never type times in seconds in an episode. Everything hangs on word anchors, so re-recorded voice re-times itself.
 - Mouths move only while that character speaks.
+- The owner chose horror (Nov 26, 2026): seasons default to the horror theme, as scary as possible for a Roblox-horror audience (dread, escalation, moving mannequins, jump scares), but never blood, gore, injuries or anyone shown being hurt.
 - Story must be clear and easy to follow. Two or three characters per episode, not all of them. Warm family-sitcom tone, nothing raunchy or random.
 - Every episode swings naturally into a real Funny Hats Company product in the final third. Never invent prices.
 - Captions in the post: hook, "30 days... And YOU make every decision.", rates, DAY N question with A/B, "Comment A or B. Tomorrow, X lives with it.", 5 hashtags.
