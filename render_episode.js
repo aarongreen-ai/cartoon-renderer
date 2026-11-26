@@ -49,7 +49,7 @@ function sanitize(ep) {
   });
   if (!ep.beats.length) ep.beats = [{ at: { line: 0 }, set: firstSet, cam: 'wide', cast: [{ id: ep.season.hero, expr: 'neutral', pose: 'idle' }] }];
   ep.reacts = (ep.reacts || []).filter((r) => r && r.at && cast[r.id]).map((r) => Object.assign(r, { at: fixA(r.at), expr: r.expr ? okExpr(r.expr) : undefined, pose: r.pose ? okPose(r.pose) : undefined }));
-  const TYPES = ['tag', 'price', 'money', 'big', 'stamp', 'stats', 'receipt', 'comment', 'vote', 'phone', 'face', 'product', 'arrow'];
+  const TYPES = ['scare', 'tag', 'price', 'money', 'big', 'stamp', 'stats', 'receipt', 'comment', 'vote', 'phone', 'face', 'product', 'arrow'];
   ep.pops = (ep.pops || []).filter((p) => p && p.at).map((p) => { p.at = fixA(p.at); if (p.until) p.until = fixA(p.until); if (!TYPES.includes(p.type)) p.type = 'tag'; if (p.type === 'face' && !cast[p.id]) p.type = 'tag'; if (p.near && !cast[p.near]) delete p.near; if (p.dur) p.dur = Math.max(0.8, Math.min(4, +p.dur || 2)); return p; }).slice(0, 45);
   ep.hud_events = (ep.hud_events || []).filter((h) => h && h.at).map((h) => Object.assign(h, { at: fixA(h.at) }));
   ep.sfx = (ep.sfx || []).filter((x) => x && x.at && x.name).map((x) => Object.assign(x, { at: fixA(x.at) })).slice(0, 8);
@@ -120,7 +120,7 @@ function sanitize(ep) {
   const want = [];
   (ep.sfx || []).forEach((s) => want.push({ name: s.name, t: anchor(s.at, 0) + (s.offset || 0), vol: s.vol || 0.45 }));
   // automatic: soft pop on pop-ins, cash on money, whoosh on set changes, ding on the vote card
-  (ep.pops || []).forEach((p) => { const t = anchor(p.at, 0); const name = p.type === 'money' ? 'cash_register' : p.type === 'comment' || p.type === 'phone' ? 'phone_ding' : 'pop'; want.push({ name, t, vol: name === 'pop' ? 0.28 : 0.35, auto: true }); });
+  (ep.pops || []).forEach((p) => { const t = anchor(p.at, 0); if (p.type === 'scare') { want.push({ name: 'jump_scare', t, vol: 0.7 }); return; } const name = p.type === 'money' ? 'cash_register' : p.type === 'comment' || p.type === 'phone' ? 'phone_ding' : 'pop'; want.push({ name, t, vol: name === 'pop' ? 0.28 : 0.35, auto: true }); });
   let lastSet = null;
   (ep.beats || []).forEach((b, i) => { if (i > 0 && b.set !== lastSet) want.push({ name: 'whoosh', t: Math.max(0, anchor(b.at, 0) - 0.12), vol: 0.22, auto: true }); lastSet = b.set; });
   if (ep.vote) want.push({ name: 'ding', t: anchor(ep.vote.at, ep.duration - 3), vol: 0.4, auto: true });

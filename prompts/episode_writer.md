@@ -43,7 +43,17 @@ A beat starts at an anchor and lasts until the next beat. 12 to 20 beats per epi
 - "shake" makes the camera shake at that anchor (for shocks, crashes). "flash" makes a white flash at the cut (for big moments). Use each at most twice.
 
 ## Horror seasons (season theme "horror")
-Build dread, then release it. Most beats use "fx" ("dark" at least; "spot:<id>" when lights are out; "flicker" before something happens; "fog" outdoors; "red" for the scariest moment). The creature is mostly unseen: use the "shadow", "eyes" and "bush" (with "opts": {"eyes": true}) props far back, glimpsed for a beat, gone the next. One real jump scare per episode at most: a quiet line, then "shake" + "flash" + a "big" pop ("RUN", "BEHIND YOU") + the "jump_scare" sound. Use "heartbeat", "door_creak", "whisper", "creepy_footsteps", "lights_buzz" sounds where they fit. Keep a thread of dry humor so it stays fun. Never show injuries, blood or anyone getting hurt; cut away instead. Night counts as "day" for the vote ("NIGHT 4").
+Make it as scary as possible for an audience that loves Roblox horror games: genuine dread, tension and shocks. The fear comes from atmosphere, suggestion and timing, never from gore.
+- Structure every night as a slow burn: an ordinary, almost cozy start, a small wrong detail, rising dread, a false calm, then the scare, then a cliffhanger. The last story line before the vote must leave the viewer frightened for the hero.
+- The threat escalates every night. It gets closer, bolder and smarter, and it learns from the hero's choices. Keep a rulebook or a pattern the viewer can follow, then break it. A broken rule always has a consequence the next night.
+- Show less than you could. Things are in a different place between shots: a mannequin closer than before ("mannequin" prop with a different "x" or "opts": {"turn": -1 to 1}), a head turned, a door now open. Glimpse the creature ("shadow" far back, "eyes", "bush" with "opts": {"eyes": true}) for a single beat, then cut away and it is gone. Use "mannequin" with "opts": {"creepy": true} only at the worst moment.
+- Sound is half the fear: "heartbeat" under tense lines, "whisper" saying nothing clear, "creepy_footsteps", "door_creak", "lights_buzz", "music_box", "owl", "thunder". Give the viewer a quiet line before each scare.
+- One or two jump scares per episode: a whispered or quiet line, then on a word: a "scare" pop ({"type": "scare", "face": "mannequin" or "shadow", "dur": 0.7}) with "shake" and "flash" on the same beat. Never two scares within 15 seconds.
+- Lighting: most beats use "fx". Use "dark" as the base, "spot:<id>" when the lights or power go out, "flicker" right before something happens, "fog" outdoors, and "red" for the most dangerous moment.
+- Characters lie, disappear, or know more than they say. Phone calls that cut out, notes in someone else's handwriting, and a voice that sounds like a friend but is not are all fair game.
+- Both vote options must be dangerous in different ways, so the viewer feels responsible for what happens.
+- Keep one thread of dry humor (a nervous joke, a clueless boss) so the scares hit harder by contrast.
+- Hard limits: no blood, no gore, no injuries shown, no one shown being hurt or killed, no weapons used on people, nothing about self-harm. If something bad happens to a character, cut away and let the empty room, a dropped flashlight or silence say it. Night counts as "day" for the vote ("NIGHT 4").
 
 ## reacts
 Change a character's face or pose mid-shot, on a word: {"at": anchor, "id": <character id>, "expr": <expression>, "pose": <pose>}. Use 6 to 14. A listener reacting to what someone says is funnier than the speaker.
@@ -63,6 +73,7 @@ Each pop: {"at": anchor, "type": <type>, ... , "dur": seconds on screen (1.2 to 
 - "face": a round inset of a character's face. {"id": <character id>, "expr": <expression>, "label": "optional tag"}. Good for someone who is not in the room (on the phone, being talked about).
 - "product": the product card. {"product": <index in the product list>}. Use exactly once, during the shop line.
 - "arrow": a yellow arrow. {"x":, "y":, "rot": degrees}.
+- "scare": horror seasons only. A full-screen jump scare of the creature's face. {"face": "mannequin" or "shadow", "dur": 0.5 to 0.9}. The jump scare sound plays automatically.
 
 ## hud_events (the scoreboard at the top)
 The scoreboard shows DAYS LEFT, the fund, and the season's stats. It starts with yesterday's values. Change values on words: {"at": anchor, "fund": <new total>} or {"at": anchor, "stat0": <new value>}. When today's audience money arrives (early in the episode), set the fund to the new total at that word, together with a "money" pop. When the hero spends money in the story, lower the fund at that word, with a "price" pop. The fund can never go below zero: if the hero cannot afford something, that is a story problem.
