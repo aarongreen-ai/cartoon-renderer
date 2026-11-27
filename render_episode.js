@@ -17,10 +17,13 @@ const dur = (f) => parseFloat(sh('ffprobe', ['-v', 'error', '-show_entries', 'fo
 
 async function dl(url, file) {
   if (!/^https?:/i.test(url)) { fs.copyFileSync(path.join(here, url), file); return file; }  // file kept in this repo (assets/sfx/...)
-  for (let i = 0; i < 4; i++) {
+  // Shopify can take a minute to finish processing freshly uploaded files, so keep retrying for about 2.5 minutes.
+  let last = '';
+  for (let i = 0; i < 9; i++) {
     try { const r = await fetch(url); if (!r.ok) throw new Error('HTTP ' + r.status); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer())); return file; }
-    catch (e) { if (i === 3) throw new Error('download failed ' + url + ' ' + e.message); await new Promise((r) => setTimeout(r, 1500 * (i + 1))); }
+    catch (e) { last = e.message; console.log('download retry', i + 1, url, last); await new Promise((r) => setTimeout(r, 5000 + i * 2500)); }
   }
+  throw new Error('download failed ' + url + ' ' + last);
 }
 
 
